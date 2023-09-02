@@ -1,13 +1,13 @@
 #!/bin/bash
 
 kind create cluster --wait 300s --config /dev/stdin <<EOF
-  kind: Cluster
-  apiVersion: kind.x-k8s.io/v1alpha4
-  containerdConfigPatches:
-    - |-
-      [plugins."io.containerd.grpc.v1.cri".registry.mirrors."docker.io"]
-        endpoint = ["http://192.168.128.1:5000"]
-  EOF
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+containerdConfigPatches:
+- |-
+    [plugins."io.containerd.grpc.v1.cri".registry.mirrors."docker.io"]
+    endpoint = ["http://192.168.128.1:5000"]
+EOF
 
 arkade install ingress-nginx
 
