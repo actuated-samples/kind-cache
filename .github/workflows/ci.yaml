@@ -1,0 +1,21 @@
+name: build
+
+on: push
+jobs:
+  start-kind:
+    runs-on: actuated-4cpu-8gb
+    steps:
+      - uses: actions/checkout@master
+        with:
+          fetch-depth: 1
+      - name: Setup mirror
+        uses: self-actuated/hub-mirror@master
+      - name: get arkade
+        uses: alexellis/setup-arkade@v1
+      - name: get kubectl and kubectl
+        uses: alexellis/arkade-get@master
+        with:
+          kubectl: latest
+          kind: latest
+      - name: Install Kubernetes kind
+        run: ./create.sh
